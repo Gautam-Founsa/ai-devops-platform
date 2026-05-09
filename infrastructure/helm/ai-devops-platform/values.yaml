@@ -1,0 +1,7 @@
+backend:
+  image: ai-devops-backend:latest
+  replicas: 2
+frontend:
+  image: ai-devops-frontend:latest
+  replicas: 2
+
