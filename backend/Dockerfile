@@ -10,11 +10,18 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/*
 
 COPY pyproject.toml ./
+
 RUN pip install --no-cache-dir --upgrade pip \
     && pip install --no-cache-dir ".[dev]"
 
+# Copy Alembic configuration and migrations
+COPY alembic.ini ./
+COPY alembic ./alembic
+
+# Copy application code
 COPY app ./app
 COPY tests ./tests
 
 EXPOSE 8000
+
 CMD ["sh", "-c", "alembic upgrade head && uvicorn app.main:app --host 0.0.0.0 --port 8000"]
