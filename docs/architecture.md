@@ -19,6 +19,10 @@ Phase 3 adds `/api/v1/k8s/*` endpoints for cluster overview, pod exploration, Cr
 
 Phase 4 adds `/api/v1/terraform/*` endpoints for natural language to Terraform generation, AWS ECS/RDS/ALB templates, static validation, and security best-practice guidance. Generation is deterministic and reviewable so users can inspect every produced `.tf` file before applying it.
 
+## CI/CD Intelligence
+
+Phase 5 adds `/api/v1/cicd/*` endpoints for GitHub Actions parsing, workflow scoring, inefficiency detection, optimization suggestions, and safer generated workflow YAML. The analyzer is static and deterministic so it can run before any repository connector is added.
+
 ## Phase Boundaries
 
 The `services/` and `agents/` directories are intentionally present in Phase 1. They define the future ownership model for log analysis, incidents, Kubernetes, Terraform, CI/CD, security, cost, and multi-agent orchestration.

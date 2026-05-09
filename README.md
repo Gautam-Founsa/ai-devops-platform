@@ -8,6 +8,7 @@ Production-grade monorepo scaffold for an AI-powered infrastructure copilot.
 - Next.js 15 frontend with dashboard shell, login, AI chat, metrics explorer, Tailwind CSS, Recharts, Framer-ready structure, and shadcn-style primitives.
 - Kubernetes Intelligence dashboard with pod explorer, CrashLoopBackOff analysis, resource recommendations, YAML explanation, and manifest generation.
 - Terraform Generator for AWS ECS, RDS, and ALB with static validation and security best-practice guidance.
+- CI/CD Analyzer for GitHub Actions workflows with caching, parallelization, and security recommendations.
 - Docker Compose for backend, frontend, PostgreSQL, Redis, and Prometheus.
 - Monorepo boundaries for future services, agents, infrastructure, monitoring, tests, and docs.
 

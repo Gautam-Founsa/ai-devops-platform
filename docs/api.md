@@ -63,3 +63,10 @@ Phase 3 runs in demo intelligence mode and preserves the API boundary for a real
 - `POST /terraform/validate`
 
 Phase 4 generates AWS ECS, RDS, and ALB Terraform from natural language intent and applies static security validation.
+
+## CI/CD
+
+- `POST /cicd/analyze`
+- `POST /cicd/optimize`
+
+Phase 5 parses GitHub Actions workflows, detects inefficiencies, suggests caching and parallelization, and recommends CI/CD security controls.
