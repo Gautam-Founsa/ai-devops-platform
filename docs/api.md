@@ -55,3 +55,11 @@ Incident analysis searches relevant logs, creates an incident, reconstructs a ti
 - `POST /k8s/generate`
 
 Phase 3 runs in demo intelligence mode and preserves the API boundary for a real cluster adapter.
+
+## Terraform
+
+- `GET /terraform/templates`
+- `POST /terraform/generate`
+- `POST /terraform/validate`
+
+Phase 4 generates AWS ECS, RDS, and ALB Terraform from natural language intent and applies static security validation.
