@@ -144,6 +144,19 @@ class IncidentEvent(UUIDMixin, TimestampMixin, Base):
     evidence: Mapped[dict] = mapped_column(JSONB, default=dict, nullable=False)
 
 
+class KubernetesResourceSnapshot(UUIDMixin, TimestampMixin, Base):
+    __tablename__ = "kubernetes_resource_snapshots"
+
+    organization_id: Mapped[UUID] = mapped_column(ForeignKey("organizations.id"), nullable=False)
+    cluster_id: Mapped[UUID | None] = mapped_column(ForeignKey("clusters.id"))
+    namespace: Mapped[str] = mapped_column(String(160), nullable=False)
+    kind: Mapped[str] = mapped_column(String(80), nullable=False)
+    name: Mapped[str] = mapped_column(String(240), nullable=False)
+    status: Mapped[str] = mapped_column(String(80), nullable=False)
+    manifest: Mapped[dict] = mapped_column(JSONB, default=dict, nullable=False)
+    signals: Mapped[dict] = mapped_column(JSONB, default=dict, nullable=False)
+
+
 class Recommendation(UUIDMixin, TimestampMixin, Base):
     __tablename__ = "recommendations"
 
@@ -185,3 +198,9 @@ Index("ix_messages_conversation_created", Message.conversation_id, Message.creat
 Index("ix_log_entries_org_timestamp", LogEntry.organization_id, LogEntry.timestamp)
 Index("ix_log_entries_org_service_level", LogEntry.organization_id, LogEntry.service_name, LogEntry.level)
 Index("ix_incident_events_incident_occurred", IncidentEvent.incident_id, IncidentEvent.occurred_at)
+Index(
+    "ix_kubernetes_resource_snapshots_org_kind_namespace",
+    KubernetesResourceSnapshot.organization_id,
+    KubernetesResourceSnapshot.kind,
+    KubernetesResourceSnapshot.namespace,
+)

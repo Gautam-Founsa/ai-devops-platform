@@ -44,3 +44,14 @@ Log search uses ChromaDB when available and falls back to PostgreSQL keyword sea
 - `POST /incidents/analyze`
 
 Incident analysis searches relevant logs, creates an incident, reconstructs a timeline, and returns recommended actions.
+
+## Kubernetes
+
+- `GET /k8s/overview`
+- `GET /k8s/pods`
+- `POST /k8s/crashloop/analyze`
+- `GET /k8s/recommendations`
+- `POST /k8s/explain`
+- `POST /k8s/generate`
+
+Phase 3 runs in demo intelligence mode and preserves the API boundary for a real cluster adapter.

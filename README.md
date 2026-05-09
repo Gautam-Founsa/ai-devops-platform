@@ -6,6 +6,7 @@ Production-grade monorepo scaffold for an AI-powered infrastructure copilot.
 
 - FastAPI backend with JWT auth, async SQLAlchemy, PostgreSQL, Redis config, ChromaDB semantic log search, AI chat endpoint, health checks, and Prometheus metrics.
 - Next.js 15 frontend with dashboard shell, login, AI chat, metrics explorer, Tailwind CSS, Recharts, Framer-ready structure, and shadcn-style primitives.
+- Kubernetes Intelligence dashboard with pod explorer, CrashLoopBackOff analysis, resource recommendations, YAML explanation, and manifest generation.
 - Docker Compose for backend, frontend, PostgreSQL, Redis, and Prometheus.
 - Monorepo boundaries for future services, agents, infrastructure, monitoring, tests, and docs.
 
