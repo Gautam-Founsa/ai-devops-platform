@@ -16,6 +16,9 @@ class Settings(BaseSettings):
         default="postgresql+asyncpg://ai_devops:ai_devops@postgres:5432/ai_devops"
     )
     redis_url: str = "redis://redis:6379/0"
+    chroma_host: str = "chromadb"
+    chroma_port: int = 8000
+    chroma_collection: str = "ai_devops_logs"
 
     jwt_secret_key: str = "change-me-in-production"
     jwt_algorithm: str = "HS256"
@@ -29,4 +32,3 @@ class Settings(BaseSettings):
 @lru_cache
 def get_settings() -> Settings:
     return Settings()
-

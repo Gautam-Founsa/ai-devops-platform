@@ -4,7 +4,7 @@ Production-grade monorepo scaffold for an AI-powered infrastructure copilot.
 
 ## Phase 1
 
-- FastAPI backend with JWT auth, async SQLAlchemy, PostgreSQL, Redis config, AI chat endpoint, health checks, and Prometheus metrics.
+- FastAPI backend with JWT auth, async SQLAlchemy, PostgreSQL, Redis config, ChromaDB semantic log search, AI chat endpoint, health checks, and Prometheus metrics.
 - Next.js 15 frontend with dashboard shell, login, AI chat, metrics explorer, Tailwind CSS, Recharts, Framer-ready structure, and shadcn-style primitives.
 - Docker Compose for backend, frontend, PostgreSQL, Redis, and Prometheus.
 - Monorepo boundaries for future services, agents, infrastructure, monitoring, tests, and docs.
@@ -21,6 +21,7 @@ Services:
 - Frontend: http://localhost:3000
 - Backend API docs: http://localhost:8000/api/docs
 - Backend metrics: http://localhost:8000/metrics
+- ChromaDB: http://localhost:8001
 - Prometheus: http://localhost:9090
 
 Register a user:
@@ -46,4 +47,3 @@ docs/             Architecture and API notes
 tests/            Cross-service integration and E2E tests
 scripts/          Developer and operations scripts
 ```
-

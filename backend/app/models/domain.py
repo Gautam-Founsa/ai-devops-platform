@@ -119,6 +119,31 @@ class LogsEmbedding(UUIDMixin, TimestampMixin, Base):
     labels: Mapped[dict] = mapped_column(JSONB, default=dict, nullable=False)
 
 
+class LogEntry(UUIDMixin, TimestampMixin, Base):
+    __tablename__ = "log_entries"
+
+    organization_id: Mapped[UUID] = mapped_column(ForeignKey("organizations.id"), nullable=False)
+    service_name: Mapped[str] = mapped_column(String(160), nullable=False)
+    environment: Mapped[str] = mapped_column(String(80), default="production", nullable=False)
+    level: Mapped[str] = mapped_column(String(30), nullable=False)
+    message: Mapped[str] = mapped_column(Text, nullable=False)
+    trace_id: Mapped[str | None] = mapped_column(String(120))
+    timestamp: Mapped[datetime] = mapped_column(DateTime(timezone=True), nullable=False)
+    labels: Mapped[dict] = mapped_column(JSONB, default=dict, nullable=False)
+
+
+class IncidentEvent(UUIDMixin, TimestampMixin, Base):
+    __tablename__ = "incident_events"
+
+    incident_id: Mapped[UUID] = mapped_column(ForeignKey("incidents.id"), nullable=False)
+    organization_id: Mapped[UUID] = mapped_column(ForeignKey("organizations.id"), nullable=False)
+    event_type: Mapped[str] = mapped_column(String(80), nullable=False)
+    title: Mapped[str] = mapped_column(String(240), nullable=False)
+    description: Mapped[str] = mapped_column(Text, nullable=False)
+    occurred_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), nullable=False)
+    evidence: Mapped[dict] = mapped_column(JSONB, default=dict, nullable=False)
+
+
 class Recommendation(UUIDMixin, TimestampMixin, Base):
     __tablename__ = "recommendations"
 
@@ -157,3 +182,6 @@ Index(
     MetricsSnapshot.created_at,
 )
 Index("ix_messages_conversation_created", Message.conversation_id, Message.created_at)
+Index("ix_log_entries_org_timestamp", LogEntry.organization_id, LogEntry.timestamp)
+Index("ix_log_entries_org_service_level", LogEntry.organization_id, LogEntry.service_name, LogEntry.level)
+Index("ix_incident_events_incident_occurred", IncidentEvent.incident_id, IncidentEvent.occurred_at)

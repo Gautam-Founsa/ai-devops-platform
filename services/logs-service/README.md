@@ -1,4 +1,5 @@
 # Logs Service
 
-Future extracted service for Loki, semantic search, clustering, and summaries.
+Phase 2 functionality is implemented in the FastAPI gateway under `backend/app/services/logs.py`.
 
+Future extraction can move ingestion adapters, Loki tailing, clustering, and retention management here.

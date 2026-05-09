@@ -28,6 +28,13 @@ services:
       timeout: 5s
       retries: 5
 
+  chromadb:
+    image: chromadb/chroma:1.5.9
+    ports:
+      - "8001:8000"
+    volumes:
+      - chroma_data:/chroma/chroma
+
   backend:
     build:
       context: ./backend
@@ -35,6 +42,9 @@ services:
       ENVIRONMENT: development
       DATABASE_URL: postgresql+asyncpg://ai_devops:ai_devops@postgres:5432/ai_devops
       REDIS_URL: redis://redis:6379/0
+      CHROMA_HOST: chromadb
+      CHROMA_PORT: 8000
+      CHROMA_COLLECTION: ai_devops_logs
       FRONTEND_ORIGIN: http://localhost:3000
       JWT_SECRET_KEY: local-dev-change-me
       AI_PROVIDER: mock
@@ -45,6 +55,8 @@ services:
         condition: service_healthy
       redis:
         condition: service_healthy
+      chromadb:
+        condition: service_started
 
   frontend:
     build:
@@ -72,4 +84,5 @@ services:
 volumes:
   postgres_data:
   redis_data:
+  chroma_data:
   prometheus_data:

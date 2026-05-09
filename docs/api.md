@@ -30,3 +30,17 @@ Requires `Authorization: Bearer <token>`.
 Requires `Authorization: Bearer <token>`.
 
 Prometheus scrape endpoint is exposed separately at `/metrics`.
+
+## Logs
+
+- `POST /logs/ingest`
+- `POST /logs/search`
+
+Log search uses ChromaDB when available and falls back to PostgreSQL keyword search during startup or local outages.
+
+## Incidents
+
+- `GET /incidents`
+- `POST /incidents/analyze`
+
+Incident analysis searches relevant logs, creates an incident, reconstructs a timeline, and returns recommended actions.
