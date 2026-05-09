@@ -157,6 +157,26 @@ class KubernetesResourceSnapshot(UUIDMixin, TimestampMixin, Base):
     signals: Mapped[dict] = mapped_column(JSONB, default=dict, nullable=False)
 
 
+class SecurityFinding(UUIDMixin, TimestampMixin, Base):
+    __tablename__ = "security_findings"
+
+    organization_id: Mapped[UUID] = mapped_column(ForeignKey("organizations.id"), nullable=False)
+    scanner: Mapped[str] = mapped_column(String(80), nullable=False)
+    category: Mapped[str] = mapped_column(String(80), nullable=False)
+    severity: Mapped[str] = mapped_column(String(40), nullable=False)
+    title: Mapped[str] = mapped_column(String(240), nullable=False)
+    description: Mapped[str] = mapped_column(Text, nullable=False)
+    file_path: Mapped[str | None] = mapped_column(String(500))
+    line: Mapped[int | None] = mapped_column(Integer)
+    cve_id: Mapped[str | None] = mapped_column(String(80))
+    package_name: Mapped[str | None] = mapped_column(String(160))
+    installed_version: Mapped[str | None] = mapped_column(String(80))
+    fixed_version: Mapped[str | None] = mapped_column(String(80))
+    recommendation: Mapped[str] = mapped_column(Text, nullable=False)
+    status: Mapped[str] = mapped_column(String(40), default="open", nullable=False)
+    metadata_json: Mapped[dict] = mapped_column(JSONB, default=dict, nullable=False)
+
+
 class Recommendation(UUIDMixin, TimestampMixin, Base):
     __tablename__ = "recommendations"
 
@@ -203,4 +223,10 @@ Index(
     KubernetesResourceSnapshot.organization_id,
     KubernetesResourceSnapshot.kind,
     KubernetesResourceSnapshot.namespace,
+)
+Index(
+    "ix_security_findings_org_severity_status",
+    SecurityFinding.organization_id,
+    SecurityFinding.severity,
+    SecurityFinding.status,
 )

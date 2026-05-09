@@ -23,6 +23,10 @@ Phase 4 adds `/api/v1/terraform/*` endpoints for natural language to Terraform g
 
 Phase 5 adds `/api/v1/cicd/*` endpoints for GitHub Actions parsing, workflow scoring, inefficiency detection, optimization suggestions, and safer generated workflow YAML. The analyzer is static and deterministic so it can run before any repository connector is added.
 
+## Security Scanning
+
+Phase 6 adds `/api/v1/security/*` endpoints for secrets detection, misconfiguration analysis, local CVE enrichment, persisted findings, and Trivy/Semgrep integration hooks. Native Trivy and Semgrep scans run automatically when their binaries are present; otherwise the platform falls back to built-in static checks.
+
 ## Phase Boundaries
 
 The `services/` and `agents/` directories are intentionally present in Phase 1. They define the future ownership model for log analysis, incidents, Kubernetes, Terraform, CI/CD, security, cost, and multi-agent orchestration.
