@@ -27,6 +27,10 @@ Phase 5 adds `/api/v1/cicd/*` endpoints for GitHub Actions parsing, workflow sco
 
 Phase 6 adds `/api/v1/security/*` endpoints for secrets detection, misconfiguration analysis, local CVE enrichment, persisted findings, and Trivy/Semgrep integration hooks. The backend Docker image installs Trivy and Semgrep for native scans; if they are absent in a custom runtime, the platform falls back to built-in static checks.
 
+## Cost Optimization
+
+Phase 7 adds `/api/v1/cost/*` endpoints for cost summaries, spend breakdowns, rightsizing opportunities, and idle-resource detection. The initial advisor uses deterministic utilization and spend signals so the frontend workflow is stable before billing adapters are added.
+
 ## Phase Boundaries
 
 The `services/` and `agents/` directories are intentionally present in Phase 1. They define the future ownership model for log analysis, incidents, Kubernetes, Terraform, CI/CD, security, cost, and multi-agent orchestration.

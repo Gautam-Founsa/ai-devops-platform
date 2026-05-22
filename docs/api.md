@@ -77,3 +77,10 @@ Phase 5 parses GitHub Actions workflows, detects inefficiencies, suggests cachin
 - `GET /security/findings`
 
 Phase 6 detects secrets, infrastructure and pipeline misconfigurations, enriches known vulnerable packages with CVE metadata, and invokes Trivy/Semgrep when their CLIs are available.
+
+## Cost
+
+- `GET /cost/recommendations`
+- `GET /cost/summary`
+
+Phase 7 returns cost breakdowns, idle-resource opportunities, and rightsizing recommendations for the cost dashboard.

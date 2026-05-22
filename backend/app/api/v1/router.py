@@ -1,6 +1,6 @@
 from fastapi import APIRouter
 
-from app.api.v1.routes import auth, chat, cicd, health, incidents, kubernetes, logs, metrics, security, terraform
+from app.api.v1.routes import auth, chat, cicd, cost, health, incidents, kubernetes, logs, metrics, security, terraform
 
 api_router = APIRouter()
 api_router.include_router(health.router)
@@ -13,3 +13,4 @@ api_router.include_router(kubernetes.router)
 api_router.include_router(terraform.router)
 api_router.include_router(cicd.router)
 api_router.include_router(security.router)
+api_router.include_router(cost.router)

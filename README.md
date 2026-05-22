@@ -10,6 +10,7 @@ Production-grade monorepo scaffold for an AI-powered infrastructure copilot.
 - Terraform Generator for AWS ECS, RDS, and ALB with static validation and security best-practice guidance.
 - CI/CD Analyzer for GitHub Actions workflows with caching, parallelization, and security recommendations.
 - Security Scanner with secrets detection, misconfiguration analysis, CVE enrichment, and Trivy/Semgrep binaries in the backend image.
+- Cost Optimization Advisor with spend breakdowns, rightsizing recommendations, and idle-resource detection.
 - Docker Compose for backend, frontend, PostgreSQL, Redis, and Prometheus.
 - Monorepo boundaries for future services, agents, infrastructure, monitoring, tests, and docs.
 
