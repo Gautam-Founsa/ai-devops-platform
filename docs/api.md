@@ -76,4 +76,4 @@ Phase 5 parses GitHub Actions workflows, detects inefficiencies, suggests cachin
 - `POST /security/scan`
 - `GET /security/findings`
 
-Phase 6 detects secrets, infrastructure and pipeline misconfigurations, enriches known vulnerable packages with CVE metadata, and integrates optional Trivy/Semgrep scanners.
+Phase 6 detects secrets, infrastructure and pipeline misconfigurations, enriches known vulnerable packages with CVE metadata, and invokes Trivy/Semgrep when their CLIs are available.

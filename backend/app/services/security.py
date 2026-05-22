@@ -190,7 +190,7 @@ class SecurityScannerService:
             with tempfile.TemporaryDirectory() as tmpdir:
                 root = Path(tmpdir)
                 for file in files:
-                    path = root / file.path
+                    path = self._safe_scan_path(root, file.path)
                     path.parent.mkdir(parents=True, exist_ok=True)
                     path.write_text(file.content)
                 result = subprocess.run(command, cwd=root, capture_output=True, text=True, timeout=30, check=False)
@@ -318,6 +318,16 @@ class SecurityScannerService:
         match = re.search(rf"{re.escape(package)}[=:@~^<>\s]+([0-9][A-Za-z0-9.\-+]*)", content, re.IGNORECASE)
         return match.group(1) if match else None
 
+    def _safe_scan_path(self, root: Path, file_path: str) -> Path:
+        safe_parts = [
+            part
+            for part in Path(file_path).parts
+            if part not in {"", ".", "..", "/"}
+        ]
+        if not safe_parts:
+            safe_parts = ["scan-input.txt"]
+        return root.joinpath(*safe_parts)
+
     def _demo_files(self) -> list[SecurityScanFile]:
         return [
             SecurityScanFile(
@@ -333,4 +343,3 @@ class SecurityScannerService:
                 content='AWS_ACCESS_KEY_ID="AKIAIOSFODNN7EXAMPLE"\n',
             ),
         ]
-

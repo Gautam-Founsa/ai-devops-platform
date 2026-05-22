@@ -19,3 +19,8 @@ def test_cve_enrichment_matches_known_package() -> None:
     findings = service._enrich_cves(SecurityScanFile(path="package.txt", content="log4j-core 2.14.1"))
     assert findings[0].cve_id == "CVE-2021-44228"
 
+
+def test_external_scan_paths_stay_under_temp_root(tmp_path) -> None:
+    service = SecurityScannerService(db=None)  # type: ignore[arg-type]
+    path = service._safe_scan_path(tmp_path, "../../etc/passwd")
+    assert path.is_relative_to(tmp_path)

@@ -25,7 +25,7 @@ Phase 5 adds `/api/v1/cicd/*` endpoints for GitHub Actions parsing, workflow sco
 
 ## Security Scanning
 
-Phase 6 adds `/api/v1/security/*` endpoints for secrets detection, misconfiguration analysis, local CVE enrichment, persisted findings, and Trivy/Semgrep integration hooks. Native Trivy and Semgrep scans run automatically when their binaries are present; otherwise the platform falls back to built-in static checks.
+Phase 6 adds `/api/v1/security/*` endpoints for secrets detection, misconfiguration analysis, local CVE enrichment, persisted findings, and Trivy/Semgrep integration hooks. The backend Docker image installs Trivy and Semgrep for native scans; if they are absent in a custom runtime, the platform falls back to built-in static checks.
 
 ## Phase Boundaries
 

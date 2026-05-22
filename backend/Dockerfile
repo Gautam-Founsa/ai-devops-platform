@@ -1,12 +1,20 @@
 FROM python:3.12-slim AS runtime
 
 ENV PYTHONDONTWRITEBYTECODE=1 \
-    PYTHONUNBUFFERED=1
+    PYTHONUNBUFFERED=1 \
+    PATH="/root/.local/bin:${PATH}"
 
 WORKDIR /app
 
 RUN apt-get update \
-    && apt-get install -y --no-install-recommends curl \
+    && apt-get install -y --no-install-recommends curl gnupg pipx wget \
+    && wget -qO - https://aquasecurity.github.io/trivy-repo/deb/public.key \
+      | gpg --dearmor -o /usr/share/keyrings/trivy.gpg \
+    && echo "deb [signed-by=/usr/share/keyrings/trivy.gpg] https://aquasecurity.github.io/trivy-repo/deb generic main" \
+      > /etc/apt/sources.list.d/trivy.list \
+    && apt-get update \
+    && apt-get install -y --no-install-recommends trivy \
+    && pipx install semgrep \
     && rm -rf /var/lib/apt/lists/*
 
 COPY pyproject.toml ./

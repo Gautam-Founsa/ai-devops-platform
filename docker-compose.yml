@@ -50,6 +50,8 @@ services:
       AI_PROVIDER: mock
     ports:
       - "8000:8000"
+    volumes:
+      - trivy_cache:/root/.cache/trivy
     depends_on:
       postgres:
         condition: service_healthy
@@ -86,3 +88,4 @@ volumes:
   redis_data:
   chroma_data:
   prometheus_data:
+  trivy_cache:
